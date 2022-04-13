@@ -8,7 +8,7 @@ This file includes all the simulations done with the new wafer where width of th
 The Python module nexntnanopy is imported as an essential tool. 
 For more information, see [nextnanopy's tutorial](https://github.com/nextnanopy/nextnanopy/blob/master/README.md):
 
-## length variable device simulation
+## Length-variable device simulation
 This file includes simulations for new device design, where we can vary the 1d channel length <em>in situ</em>.
 
 ## TODO
