@@ -34,10 +34,10 @@ This file includes simulations for new device design, where we can vary the 1d c
         return x_upper_limit, x_upper_limit - x_0, lim, width, count
 
 ```
-# Optimise grid points: reduce grid point at central of channel and also regrowth interface
-# Try single well model where tunnelling probability is same to that as in superlattice
-# Adjust gate geometry to compensate potential tail
-# Non-equibilirium Green's function package: NextNanoNGEF
+* Optimise grid points: reduce grid point at central of channel and also regrowth interface
+* Try single well model where tunnelling probability is same to that as in superlattice
+* Adjust gate geometry to compensate potential tail
+* Non-equibilirium Green's function package: ```NextNano.NEGF```
 ## History of changes
 ### April 13th, 2022
 * Initial upload
