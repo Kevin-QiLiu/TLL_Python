@@ -1,5 +1,5 @@
 # README
-This respoitory includes all python source code for Qi Liu's Master project in semiconductor physics group, Cavendish laboratory, University of Cambridge.
+This respoitory includes all python source code for Qi Liu's Master project in Semiconductor Physics group, Cavendish Laboratory, University of Cambridge.
 
 Contact Qi Liu at ql315@cam.ac.uk or qi.liu.apply@outlook.com 
 
