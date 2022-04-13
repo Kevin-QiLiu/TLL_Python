@@ -1,0 +1,731 @@
+#***************************************************************************!
+# This is a file for testing wafers used in TLL project.                    !
+# Adapted from : Greg_Snider_MANUAL_1D_nn3.in                               !
+# Documentation: https://www.nextnano.com/nextnanoplus                      !
+# Author:        Qi Liu                                                     !
+# Date  :        15/01/2022                                                 !                                              
+#***************************************************************************!
+
+
+# Defining variables---------------------------------------------------------# Gaussian distribution of ion implantation (LSS theory)
+
+#Wafer type (to distinguish from Wafer C2617, WHY different in two thesis??)
+$Wafer_C2617 = 0
+
+#parameters
+$temperature = 4 # in Kelvin
+$conc_n = 9e+17 # maximum of doping concentration  (DisplayUnit:cm^-3)
+$conc_n2 = 9e+17
+$Doping_factor1 = 1 # factor to scale doping down to allow for partial ionisation (rather than letting nextnano work it out!)
+$Doping_factor2 = 0.15 # $Doping_factor1*0.8 # factor to scale doping down to allow for partial ionisation (rather than letting nextnano work it out!)
+$Doping_background = 1000000000000000.0 # background doping from impurities in MBE chamber, usually p-type
+$mu_n = 86 # x coordinate of Gauss center     (DisplayUnit:nm)
+$sigma_n = 44 # root mean square deviation       (DisplayUnit:nm)
+$conc_p = 1.9947e+16 # maximum of doping concentration  (DisplayUnit:cm^-3)
+$mu_p = 75 # x coordinate of Gauss center     (DisplayUnit:nm)
+$sigma_p = 20
+$alloy1_x = 0.33
+$Barrier_point_spacing = 0.1
+$E_min = 0
+$E_max = 1.5
+$delta_energy = 0.005
+$num_eigenstates_device = 200
+
+                                                                              
+#structural variables (Surface to bulk)
+$surface_contact_width = -5
+$surface_cap_width = 10
+$upper_AlGaAs_doping_layer_width = 40
+$upper_AlGaAs_modulation_spacer_width = 20
+$QW1_Start = $surface_cap_width+$upper_AlGaAs_doping_layer_width+$upper_AlGaAs_modulation_spacer_width
+$QW1_width = 18
+$Barrier_Start = $QW1_Start+ $QW1_width
+$Barrier_Width_1 = 0.556
+$Barrier_Width_2 = 0.833
+$Barrier_Period = $Barrier_Width_1 + $Barrier_Width_2
+$superlattice_repeat_factor = 20
+$QW2_Start = $Barrier_Start+$Barrier_Period*$superlattice_repeat_factor
+$QW2_width = 18
+$lower_AlGaAs_modulation_spacer_width = 25
+$GaAs_spacer1_width = 0.56
+$AlGaAs_spacer_width = 15
+$lower_AlGaAs_doping_layer_width = 40
+$GaAs_spacer2_width = 0.56
+$transtobulk_start = $QW2_Start+$QW2_width+$lower_AlGaAs_modulation_spacer_width+$GaAs_spacer1_width+$AlGaAs_spacer_width
+                      +$lower_AlGaAs_doping_layer_width+$GaAs_spacer2_width
+$AlGaAs_transtobulk_width = 350
+$lower_boundary_belowsurface = 1000
+$regrowth_interface = 1005
+#---------------------------------------------------------------------------#
+
+global{ 
+   simulate1D{}   
+   crystal_zb{
+      x_hkl = [1, 0, 0]
+      y_hkl = [0, 1, 0]
+   }
+   substrate{ name = "GaAs" }
+
+   temperature = $temperature 
+   temperature_dependent_bandgap = no
+}
+
+grid{
+   xgrid{
+      line{ pos =  -5 spacing = 1.0 }
+      line{ pos = 15.0 spacing = 1.0 }
+      line{ pos = 35.0 spacing = 1.0 }
+      line{ pos = $Barrier_Start-20 spacing = 0.5 }  # inserted
+$bn=0
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1 
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1      
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1      
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1      
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1 
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1      
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1      
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1      
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1 
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1      
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1      
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1      
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+$bn=$bn+1
+      line{ pos = $Barrier_Start+$bn*$Barrier_Period  spacing = $Barrier_point_spacing }
+
+
+      line{ pos = $QW2_Start spacing = 0.1 } # inserted
+      line{ pos = 350.0 spacing = 1.0 }
+      line{ pos = 1505.0 spacing = 5.0 }
+      line{ pos = 2005.0 spacing = 5.0 }
+      line{ pos = 3005.0 spacing = 5.0 }
+
+   }
+}
+
+structure{
+   output_alloy_composition{}
+   output_impurities{}
+   region{
+      everywhere{}
+      contact {name = dummy}
+      binary{ name = "GaAs" }
+#      ternary_constant{
+#         name = "Al(x)Ga(1-x)As"
+#         alloy_x = 0.33 
+#      }
+   }
+
+   region{
+      line{
+         x = [$surface_contact_width, 0]                   # contact ("Schottky barrier") GaAs surface
+      }
+      contact { name = air }                              
+      binary{ name = "GaAs" }
+   }
+    region{
+      line{
+         x = [0, $surface_cap_width]                   #10 nm GaAs surface protective cap
+      }
+      binary{ name = "GaAs" }
+   }
+
+   region{
+      line{
+         x = [$surface_cap_width,$surface_cap_width+$upper_AlGaAs_doping_layer_width]                 # 40 nm AlGaAs doped with Si
+      }
+      ternary_constant{
+         name = "Al(x)Ga(1-x)As"
+         alloy_x = 0.33 
+      }
+
+      doping{
+         constant{
+            name = "Si"
+            conc = $conc_n
+         }
+      }
+   }
+   region{
+      line{
+         x = [$surface_cap_width+$upper_AlGaAs_doping_layer_width,
+              $surface_cap_width+$upper_AlGaAs_doping_layer_width+$upper_AlGaAs_modulation_spacer_width]              # 20 nm AlGaAs modulation spacer
+      }
+      ternary_constant{
+         name = "Al(x)Ga(1-x)As"
+         alloy_x = 0.33 
+      }
+   }
+   region{
+      line{
+         x = [$QW1_Start, $Barrier_Start]              # 18 nm GaAs upper QW
+      }
+            binary{ name = "GaAs" }
+            contact {name = "source"}
+     }
+#--------------------------------GaAs/AlGaAs 0.556/0.833 nm *10 SUPERLATTICE------------------------------------#
+  
+
+
+    $bn = 0 # current barrier number (0-$Barrier_Count-1)
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs}    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }
+
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    } 
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+ 
+   $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+   $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    } 
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+
+    $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+ 
+   $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+   $bn = $bn+1
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period, $Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1] }  
+        binary{ name = GaAs }   
+    }
+    region{       # barrier
+        line{ x = [$Barrier_Start+$bn*$Barrier_Period+$Barrier_Width_1, $Barrier_Start+($bn+1)*$Barrier_Period] }  
+        ternary_constant{ name= "Al(x)Ga(1-x)As"
+        alloy_x = $alloy1_x }  
+    }   
+
+
+#--------------------------------GaAs/AlGaAs 0.556/0.833 nm *10 SUPERLATTICE------------------------------------#
+   region{
+      line{
+         x = [$QW2_Start, $QW2_Start+$QW2_width]   # 18 nm GaAs lower QW
+      }
+      binary{ name = "GaAs" }
+      contact{ name = "drain"}
+    }
+   region{
+      line{
+         x = [$QW2_Start+$QW2_width, 
+              $QW2_Start+$QW2_width+$lower_AlGaAs_modulation_spacer_width]             #25 nm AlGaAs modulation spacer
+      }
+      ternary_constant{
+         name = "Al(x)Ga(1-x)As"
+         alloy_x = 0.33 
+      }
+    }
+    region{
+      line{
+         x = [$QW2_Start+$QW2_width+$lower_AlGaAs_modulation_spacer_width, 
+              $QW2_Start+$QW2_width+$lower_AlGaAs_modulation_spacer_width+$GaAs_spacer1_width]              #0.56 nm GaAs Spacer
+      }
+      binary{ name = "GaAs" }
+    }
+   region{  
+      line{
+         x = [$QW2_Start+$QW2_width+$lower_AlGaAs_modulation_spacer_width+$GaAs_spacer1_width,   
+              $QW2_Start+$QW2_width+$lower_AlGaAs_modulation_spacer_width+$GaAs_spacer1_width+$AlGaAs_spacer_width]             # 15 nm AlGaAs Spacer
+      }
+      ternary_constant{
+         name = "Al(x)Ga(1-x)As"
+         alloy_x = 0.33
+      }
+    }
+    
+   region{
+      line{
+         x =  [$QW2_Start+$QW2_width+$lower_AlGaAs_modulation_spacer_width+$GaAs_spacer1_width+$AlGaAs_spacer_width, 
+               $QW2_Start+$QW2_width+$lower_AlGaAs_modulation_spacer_width+$GaAs_spacer1_width+$AlGaAs_spacer_width+$lower_AlGaAs_doping_layer_width]                 # 40 nm AlGaAs doping layer
+      }
+      doping{
+         constant{
+            name = "Si"
+            conc = $conc_n2*$Doping_factor2 
+         }
+      }
+      ternary_constant{
+      name = "Al(x)Ga(1-x)As"
+      alloy_x = 0.33 
+      }
+
+    }
+   
+   region{
+      line{
+         x = [$QW2_Start+$QW2_width+$lower_AlGaAs_modulation_spacer_width+$GaAs_spacer1_width+$AlGaAs_spacer_width+$lower_AlGaAs_doping_layer_width, 
+              $transtobulk_start]              # 0.56 nm GaAs spacer
+      }
+      binary{ name = "GaAs" } # use AlGaAs to avoid charge being put in
+   }
+   region{
+      line{
+         x = [$transtobulk_start, $transtobulk_start+$AlGaAs_transtobulk_width]              #350 nm AlGaAs transition to bulk
+      }
+      ternary_constant{
+         name = "Al(x)Ga(1-x)As"
+         alloy_x = 0.33 
+      }
+      doping{
+         constant{
+            name = "impurity2-p-type" # something p-type
+            conc = $Doping_background # make band flat...
+         }
+      }
+   }
+##IF $Wafer_C2617 add superlattice in C2617
+    region{
+      line{
+         x = [$transtobulk_start+$AlGaAs_transtobulk_width, $transtobulk_start+$AlGaAs_transtobulk_width+$lower_boundary_belowsurface]              # GaAs substrate 1000 nm below surface
+      }
+      binary{ name = "GaAs" }
+      doping{
+         constant{
+            name = "impurity2-p-type" # something p-type
+            conc = $Doping_background
+         }
+               }
+      contact{name = "air"}
+
+   }  
+}
+
+impurities{
+   donor{                     
+      name = "Si"
+      energy = 0.12
+      degeneracy = 2
+   }
+   acceptor{                  
+      name = "impurity2-p-type" # used as background doping during MBE growth 
+      energy = -100.0         # fully ionized
+      degeneracy = 4
+   }
+}
+
+classical{	                  
+   Gamma{ output_bandedge{ averaged = no } } 
+   L{}
+   X{}
+   HH{ output_bandedge{ averaged = no } }
+   LH{}
+   SO{}
+   output_bandedges{ averaged = no }
+   output_bandgap{}
+   output_carrier_densities{}
+   output_ionized_dopant_densities{}
+   output_intrinsic_density{}
+}
+
+
+poisson{
+   output_potential{}
+   output_electric_field{}
+}
+
+quantum {
+   region{
+      name = cbr
+      x = [$QW1_Start-20,$QW2_Start+$QW2_width+200] #region to calculate wavefunctions
+      boundary{ x=cbr }
+      Gamma{ num_ev = $num_eigenstates_device }
+      output_wavefunctions{
+         max_num = $num_eigenstates_device 
+         amplitudes = yes
+         probabilities = yes
+      }
+   }
+}
+
+cbr {
+    name = cbr
+    delta_energy = $delta_energy
+    abs_min_energy = $E_min
+    abs_max_energy = $E_max
+    options = [1, 0, 0]
+    ildos = yes
+}
+
+contacts{
+   schottky{
+      name = air
+      bias = 0
+      barrier = 0.7
+   }
+#   schottky{
+#      name = regrowth_interface
+#      bias = 0
+#      barrier = 0.75
+#   }
+   fermi{
+      name = "dummy"
+      bias = 0
+   }
+   fermi{ name = "drain" bias = 0.0}
+   fermi{ name = "source" bias = -10e-3} 
+}
+
+currents{
+   recombination_model{
+      SRH         = no
+      Auger       = no
+      radiative   = no
+   }
+   output_fermi_levels{}
+}
+
+
+output{
+   material_parameters{
+   }
+}
+
+run{
+   solve_poisson{}
+   solve_quantum{}
+   outer_iteration{ # (solve Schroedinger, Poisson (and current) self-consistently)
+   }
+   #poisson{}
+   #quantum_poisson{}
+}
+
+
+###########################################################################
+# The material parameters have been chosen to match the nextnano3 tutorial.
+###########################################################################
+database{
+binary_zb { 	 
+   name =   "GaAs" 
+   dielectric_consts{ 
+      static_a = 13.1      # Greg Snider
+
+   }
+
+   conduction_bands {  
+      Gamma{
+       # bandgap = 1.42     # Greg Snider
+         bandgap = 1.422333 # nextnano3 tutorial
+         mass = 0.067 }     # Greg Snider
+      L{ 
+         bandgap = 1.707    # nextnano3 tutorial
+         mass_l = 1.9
+         mass_t = 0.0754
+	}
+      X{ 
+         bandgap = 1.899    # nextnano3 tutorial
+         mass_l = 1.3
+         mass_t = 0.23
+	}
+   } 
+
+   valence_bands {  
+      bandoffset = 	1.346 + -2.882
+      HH{ mass = 0.480 }   # Greg Snider
+      LH{ mass = 0.082 }   # Greg Snider
+      SO{ mass = 0.172 }
+   }
+}
+ 
+
+binary_zb { 	 
+   name =   "AlAs" 
+   dielectric_consts{ 
+      static_a = 10.1      # Greg Snider
+   }
+
+   conduction_bands {  
+      Gamma{
+#        bandgap = 3.002667  #
+         bandgap = 2.972222  #
+         mass = 0.150333 }   # Greg Snider
+      L{ 
+         bandgap = 2.352  #
+         mass_l = 1.32
+         mass_t = 0.15
+	}
+      X{ 
+         bandgap = 2.164  #
+         mass_l = 0.97
+         mass_t = 0.22
+      }
+   } 
+
+   valence_bands {  
+      bandoffset = 	0.8874444 + -2.882
+      HH{ mass = 0.51 }       # Greg Snider
+      LH{ mass = 0.088666 }   # Greg Snider
+      SO{ mass = 0.28 }
+   }
+} 
+
+######### aluminum gallium arsenide (AlGaAs) ##########################
+#                                                g = 0.4       # (g factor of Al0.3Ga0.7As)
+bowing_zb {
+    name       = "AlGaAs_Bowing_Ga"    
+    valence    = III_V
+
+    conduction_bands{
+#       Gamma{ bandgap = -0.127 + 1.310 * 1 }                  # Vurgaftman1: -0.127 + 1.310 * x
+        Gamma{ bandgap =  0.425238095 }                        # 
+        X    { bandgap =  0.055 }                              # Vurgaftman1
+    }
+
+}
+
+
+
+bowing_zb {
+    name       = "AlGaAs_Bowing_Al"
+    valence    = III_V
+
+    conduction_bands{
+#       Gamma{ bandgap = -0.127 + 1.310 * 0 }                  # Vurgaftman1: -0.127 + 1.310 * x
+        Gamma{ bandgap =  0.425238095 }                        # 
+        X    { bandgap =  0.055 }                              # Vurgaftman1
+    }
+
+}
+
+
+
+ternary2_zb {
+    name       = "Al(x)Ga(1-x)As"
+    valence    = III_V
+
+    binary_x   = AlAs
+    binary_1_x = GaAs 
+    bowing_x   = AlGaAs_Bowing_Ga
+    bowing_1_x = AlGaAs_Bowing_Al 
+}
+
+}
+
+
+
