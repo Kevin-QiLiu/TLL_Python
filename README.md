@@ -12,8 +12,8 @@ For more information, see [nextnanopy's tutorial](https://github.com/nextnanopy/
 This file includes simulations for new device design, where we can vary the 1d channel length <em>in situ</em>.
 
 ## TODO
-* Optimise grid points: reduce grid point at central of channel and also regrowth interface
-* Try single well model where tunnelling probability is same to that as in superlattice
+* Optimise nextnano grid points: reduce grid point at central of channel and also regrowth interface (pirority)
+* Try single well model where tunnelling probability is same to that as in superlattice (less sugessted)
 * Adjust gate geometry to compensate potential tail
 * Non-equibilirium Green's function package: ```NextNano.NEGF```
 ## History of changes
