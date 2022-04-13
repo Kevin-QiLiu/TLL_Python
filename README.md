@@ -12,34 +12,25 @@ For more information, see [nextnanopy's tutorial](https://github.com/nextnanopy/
 This file includes simulations for new device design, where we can vary the 1d channel length <em>in situ</em>.
 
 ## TODO
-* There is some size problem in the method ```get_channel_length```
-```python
-    def get_channel_length(cls, matrix, edge_axis, slice_axis, tol, x_0, x_1):
-        """return effective x upper limit for conducting channel, the channel length and width as a function of x"""
-        global x_upper_limit
-        num = 100
-        width = []
-        lim = np.linspace(x_0, x_1, num)
-        count = 0
-        for slice_pos in lim:
-            channel_temp = cls(matrix, slice_pos, edge_axis, slice_axis)
-            width_temp = channel_temp.get_channel_width()
-            width.append(width_temp)
-            if width_temp > tol:
-                x_upper_limit = slice_pos
-                break
-            # elif width_temp == 1000:
-            #     x_upper_limit = x_1
-            count += 1
-        return x_upper_limit, x_upper_limit - x_0, lim, width, count
-
-```
 * Optimise grid points: reduce grid point at central of channel and also regrowth interface
 * Try single well model where tunnelling probability is same to that as in superlattice
 * Adjust gate geometry to compensate potential tail
 * Non-equibilirium Green's function package: ```NextNano.NEGF```
 ## History of changes
 ### April 13th, 2022
+* separate ```get_channel_length``` and ```get_vary_width``` method to resolve the size boundary issue.
+```python
+    @classmethod
+    def get_vary_width(cls, matrix, edge_axis, slice_axis, x_0, x_1):
+        width = []
+        num = 100
+        lim = np.linspace(x_0, x_1, num)
+        for slice_pos in lim:
+            channel_temp = cls(matrix, slice_pos, edge_axis, slice_axis)
+            width_temp = channel_temp.get_channel_width()
+            width.append(width_temp)
+        return lim, np.asarray(width)
+```
 * Initial upload
 
 
