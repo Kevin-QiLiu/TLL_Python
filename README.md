@@ -12,6 +12,7 @@ For more information, see [nextnanopy's tutorial](https://github.com/nextnanopy/
 This file includes simulations for new device design, where we can vary the 1d channel length <em>in situ</em>.
 
 ## TODO
+* Check definition of ```contact``` in nextnano, and review barrier height of metal-semiconductor interface
 * Vary gate voltages using Davies's method to test channel length, develop a voltage scheme to 1. fix length while shrinking channel, 2. vary length continously 
 * Optimise nextnano grid points: reduce grid point at central of channel and also regrowth interface (pirority)
 * Try single well model where tunnelling probability is same to that as in superlattice (less sugessted)
